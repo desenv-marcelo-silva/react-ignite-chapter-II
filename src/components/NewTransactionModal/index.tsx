@@ -1,10 +1,9 @@
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import Modal from 'react-modal';
 
-import { TransactionsContext } from '../../TransactionsContext';
-
 import { closeImg, incomeImg, outcomeImg } from '../../assets';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import { Container, TransactionTypeContainer, RadioBox } from './styles';
 
@@ -24,7 +23,7 @@ export function NewTransactionModal({
   const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
 
-  const { createTransaction } = useContext(TransactionsContext);
+  const { createTransaction } = useTransactions();
 
   function resetFormValues() {
     setType('deposit');
