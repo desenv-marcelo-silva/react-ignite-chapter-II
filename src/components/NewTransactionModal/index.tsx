@@ -26,14 +26,25 @@ export function NewTransactionModal({
 
   const { createTransaction } = useContext(TransactionsContext);
 
-  function handleNewTransaction(event: FormEvent) {
+  function resetFormValues() {
+    setType('deposit');
+    setAmmount(0);
+    setCategory('');
+    setTitle('');
+  }
+
+  async function handleNewTransaction(event: FormEvent) {
     event.preventDefault();
-    createTransaction({
+    await createTransaction({
       title,
       ammount,
       category,
       type,
     });
+
+    onRequestClose();
+
+    resetFormValues();
   }
 
   return (
